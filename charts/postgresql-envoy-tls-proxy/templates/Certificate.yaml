@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ include "postgresql-envoy-tls-proxy.fullname" . }}
+spec:
+  secretName: {{ include "postgresql-envoy-tls-proxy.fullname" . }}-tls
+  dnsNames:
+  - {{ .Values.dnsName }}
+  issuerRef:
+    name: {{ .Values.certificate.issuerName }}
+    # We can reference ClusterIssuers by changing the kind here.
+    # The default value is Issuer (i.e. a locally namespaced Issuer)
+    kind: {{ .Values.certificate.issuerKind }}
+    group: cert-manager.io
