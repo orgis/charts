@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  postgresql-envoy-tls-proxy:
+  - apiVersion: v2
+    appVersion: v1.23-latest
+    created: "2022-10-24T08:10:07.304586485Z"
+    description: PostgreSQL TLS proxy with Envoy
+    digest: 6ff3e91dee595ff127ee3ad54d3618ced71dc588208fcf31efc0b78633a419aa
+    name: postgresql-envoy-tls-proxy
+    type: application
+    urls:
+    - https://github.com/orgis/charts/releases/download/postgresql-envoy-tls-proxy-0.3/postgresql-envoy-tls-proxy-0.3.tgz
+    version: "0.3"
+generated: "2022-10-24T08:10:07.304594885Z"
