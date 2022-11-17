@@ -12,7 +12,8 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: {{ include (print $.Template.BasePath "/ConfigMap.yaml") . | sha256sum }}
+        checksum/config-envoy: {{ include (print $.Template.BasePath "/Envoy.ConfigMap.yaml") . | sha256sum }}
+        checksum/secret-pgbouncer: {{ include (print $.Template.BasePath "/PGBouncer.Secret.yaml") . | sha256sum }}
       labels:
         {{- include "postgresql-envoy-tls-proxy.selectorLabels" . | nindent 8 }}
     spec:
@@ -36,6 +37,10 @@ spec:
             - name: http
               containerPort: 8000
               protocol: TCP
+          startupProbe:
+            httpGet:
+              path: /
+              port: http
           livenessProbe:
             httpGet:
               path: /
@@ -50,6 +55,16 @@ spec:
               mountPath: /etc/envoy
             - name: envoy-certs
               mountPath: /etc/envoy-certs
+        - name: pgbouncer
+          image: "{{ .Values.pgbouncer.image.repository }}:{{ .Values.pgbouncer.image.tag }}"
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - name: postgres
+              containerPort: 6432
+              protocol: TCP
+          envFrom:
+            - secretRef:
+                name: {{ include "postgresql-envoy-tls-proxy.fullname" . }}-pgbouncer-auth
       volumes:
         - name: envoy-config
           configMap:

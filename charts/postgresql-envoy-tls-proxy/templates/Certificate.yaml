@@ -5,7 +5,7 @@ metadata:
 spec:
   secretName: {{ include "postgresql-envoy-tls-proxy.fullname" . }}-tls
   dnsNames:
-  - {{ .Values.dnsName }}
+  - {{ .Values.service.hostname }}
   issuerRef:
     name: {{ .Values.certificate.issuerName }}
     # We can reference ClusterIssuers by changing the kind here.
