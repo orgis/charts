@@ -2,30 +2,44 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-dnsName: "" # 👀
-databaseEndpoint: "" # 👀
+database:
+  # host: "" # 👀
+  # username: "" # 👀
+  # password: "" # 👀
+  # database: "" # 👀
+  port: 5432
+
 certificate:
-  issuerName: "" # 👀
+  # issuerName: "" # 👀
   issuerKind: "ClusterIssuer"
 
 service:
-  hostname: "" # 👀
+  # hostname: "" # 👀
   type: LoadBalancer
+  port: 65432
+
+envoy:
   port: 5432
+  timeout: "120s"
+
+pgbouncer:
+  image:
+    repository: "bitnami/pgbouncer"
+    tag: "1.17.0-debian-11-r59"
 
 replicaCount: 1
 
 image:
   repository: envoyproxy/envoy-contrib
   pullPolicy: IfNotPresent
-  # !!! 👉 Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "v1.24.0"
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
 serviceAccount:
+  create: true
   annotations: {}
   name: ""
 

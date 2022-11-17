@@ -1,0 +1,632 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": [
+    "database",
+    "certificate",
+    "service",
+    "envoy",
+    "pgbouncer",
+    "replicaCount",
+    "image",
+    "imagePullSecrets",
+    "nameOverride",
+    "fullnameOverride",
+    "serviceAccount",
+    "podSecurityContext",
+    "securityContext",
+    "resources"
+  ],
+  "properties": {
+    "database": {
+      "type": "object",
+      "default": {},
+      "title": "The database Schema",
+      "required": [
+        "host",
+        "username",
+        "password",
+        "database",
+        "port"
+      ],
+      "properties": {
+        "host": {
+          "type": "string",
+          "default": "",
+          "title": "The host Schema",
+          "examples": [
+            ""
+          ]
+        },
+        "username": {
+          "type": "string",
+          "default": "",
+          "title": "The username Schema",
+          "examples": [
+            ""
+          ]
+        },
+        "password": {
+          "type": "string",
+          "default": "",
+          "title": "The password Schema",
+          "examples": [
+            ""
+          ]
+        },
+        "database": {
+          "type": "string",
+          "default": "",
+          "title": "The database Schema",
+          "examples": [
+            ""
+          ]
+        },
+        "port": {
+          "type": "integer",
+          "default": 0,
+          "title": "The port Schema",
+          "examples": [
+            5432
+          ]
+        }
+      },
+      "examples": [
+        {
+          "host": "",
+          "username": "",
+          "password": "",
+          "database": "",
+          "port": 5432
+        }
+      ]
+    },
+    "certificate": {
+      "type": "object",
+      "default": {},
+      "title": "The certificate Schema",
+      "required": [
+        "issuerName",
+        "issuerKind"
+      ],
+      "properties": {
+        "issuerName": {
+          "type": "string",
+          "default": "",
+          "title": "The issuerName Schema",
+          "examples": [
+            ""
+          ]
+        },
+        "issuerKind": {
+          "type": "string",
+          "default": "",
+          "title": "The issuerKind Schema",
+          "examples": [
+            "ClusterIssuer"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "issuerName": "",
+          "issuerKind": "ClusterIssuer"
+        }
+      ]
+    },
+    "service": {
+      "type": "object",
+      "default": {},
+      "title": "The service Schema",
+      "required": [
+        "hostname",
+        "type",
+        "port"
+      ],
+      "properties": {
+        "hostname": {
+          "type": "string",
+          "default": "",
+          "title": "The hostname Schema",
+          "examples": [
+            ""
+          ]
+        },
+        "type": {
+          "type": "string",
+          "default": "",
+          "title": "The type Schema",
+          "examples": [
+            "LoadBalancer"
+          ]
+        },
+        "port": {
+          "type": "integer",
+          "default": 0,
+          "title": "The port Schema",
+          "examples": [
+            65432
+          ]
+        }
+      },
+      "examples": [
+        {
+          "hostname": "",
+          "type": "LoadBalancer",
+          "port": 65432
+        }
+      ]
+    },
+    "envoy": {
+      "type": "object",
+      "default": {},
+      "title": "The envoy Schema",
+      "required": [
+        "port",
+        "timeout"
+      ],
+      "properties": {
+        "port": {
+          "type": "integer",
+          "default": 0,
+          "title": "The port Schema",
+          "examples": [
+            5432
+          ]
+        },
+        "timeout": {
+          "type": "string",
+          "default": "",
+          "title": "The timeout Schema",
+          "examples": [
+            "120s"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "port": 5432,
+          "timeout": "120s"
+        }
+      ]
+    },
+    "pgbouncer": {
+      "type": "object",
+      "default": {},
+      "title": "The pgbouncer Schema",
+      "required": [
+        "image"
+      ],
+      "properties": {
+        "image": {
+          "type": "object",
+          "default": {},
+          "title": "The image Schema",
+          "required": [
+            "repository",
+            "tag"
+          ],
+          "properties": {
+            "repository": {
+              "type": "string",
+              "default": "",
+              "title": "The repository Schema",
+              "examples": [
+                "bitnami/pgbouncer"
+              ]
+            },
+            "tag": {
+              "type": "string",
+              "default": "",
+              "title": "The tag Schema",
+              "examples": [
+                "1.17.0-debian-11-r59"
+              ]
+            }
+          },
+          "examples": [
+            {
+              "repository": "bitnami/pgbouncer",
+              "tag": "1.17.0-debian-11-r59"
+            }
+          ]
+        }
+      },
+      "examples": [
+        {
+          "image": {
+            "repository": "bitnami/pgbouncer",
+            "tag": "1.17.0-debian-11-r59"
+          }
+        }
+      ]
+    },
+    "replicaCount": {
+      "type": "integer",
+      "default": 0,
+      "title": "The replicaCount Schema",
+      "examples": [
+        1
+      ]
+    },
+    "image": {
+      "type": "object",
+      "default": {},
+      "title": "The image Schema",
+      "required": [
+        "repository",
+        "pullPolicy",
+        "tag"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "default": "",
+          "title": "The repository Schema",
+          "examples": [
+            "envoyproxy/envoy-contrib"
+          ]
+        },
+        "pullPolicy": {
+          "type": "string",
+          "default": "",
+          "title": "The pullPolicy Schema",
+          "examples": [
+            "IfNotPresent"
+          ]
+        },
+        "tag": {
+          "type": "string",
+          "default": "",
+          "title": "The tag Schema",
+          "examples": [
+            ""
+          ]
+        }
+      },
+      "examples": [
+        {
+          "repository": "envoyproxy/envoy-contrib",
+          "pullPolicy": "IfNotPresent",
+          "tag": ""
+        }
+      ]
+    },
+    "imagePullSecrets": {
+      "type": "array",
+      "default": [],
+      "title": "The imagePullSecrets Schema",
+      "items": {},
+      "examples": [
+        []
+      ]
+    },
+    "nameOverride": {
+      "type": "string",
+      "default": "",
+      "title": "The nameOverride Schema",
+      "examples": [
+        ""
+      ]
+    },
+    "fullnameOverride": {
+      "type": "string",
+      "default": "",
+      "title": "The fullnameOverride Schema",
+      "examples": [
+        ""
+      ]
+    },
+    "serviceAccount": {
+      "type": "object",
+      "default": {},
+      "title": "The serviceAccount Schema",
+      "required": [
+        "create",
+        "annotations",
+        "name"
+      ],
+      "properties": {
+        "create": {
+          "type": "boolean",
+          "default": false,
+          "title": "The create Schema",
+          "examples": [
+            true
+          ]
+        },
+        "annotations": {
+          "type": "object",
+          "default": {},
+          "title": "The annotations Schema",
+          "required": [],
+          "properties": {},
+          "examples": [
+            {}
+          ]
+        },
+        "name": {
+          "type": "string",
+          "default": "",
+          "title": "The name Schema",
+          "examples": [
+            ""
+          ]
+        }
+      },
+      "examples": [
+        {
+          "create": true,
+          "annotations": {},
+          "name": ""
+        }
+      ]
+    },
+    "podSecurityContext": {
+      "type": "object",
+      "default": {},
+      "title": "The podSecurityContext Schema",
+      "required": [
+        "fsGroup"
+      ],
+      "properties": {
+        "fsGroup": {
+          "type": "integer",
+          "default": 0,
+          "title": "The fsGroup Schema",
+          "examples": [
+            1001
+          ]
+        }
+      },
+      "examples": [
+        {
+          "fsGroup": 1001
+        }
+      ]
+    },
+    "securityContext": {
+      "type": "object",
+      "default": {},
+      "title": "The securityContext Schema",
+      "required": [
+        "runAsUser",
+        "runAsNonRoot",
+        "readOnlyRootFilesystem",
+        "capabilities"
+      ],
+      "properties": {
+        "runAsUser": {
+          "type": "integer",
+          "default": 0,
+          "title": "The runAsUser Schema",
+          "examples": [
+            1001
+          ]
+        },
+        "runAsNonRoot": {
+          "type": "boolean",
+          "default": false,
+          "title": "The runAsNonRoot Schema",
+          "examples": [
+            true
+          ]
+        },
+        "readOnlyRootFilesystem": {
+          "type": "boolean",
+          "default": false,
+          "title": "The readOnlyRootFilesystem Schema",
+          "examples": [
+            true
+          ]
+        },
+        "capabilities": {
+          "type": "object",
+          "default": {},
+          "title": "The capabilities Schema",
+          "required": [
+            "drop"
+          ],
+          "properties": {
+            "drop": {
+              "type": "array",
+              "default": [],
+              "title": "The drop Schema",
+              "items": {
+                "type": "string",
+                "default": "",
+                "title": "A Schema",
+                "examples": [
+                  "ALL"
+                ]
+              },
+              "examples": [
+                [
+                  "ALL"
+                ]
+              ]
+            }
+          },
+          "examples": [
+            {
+              "drop": [
+                "ALL"
+              ]
+            }
+          ]
+        }
+      },
+      "examples": [
+        {
+          "runAsUser": 1001,
+          "runAsNonRoot": true,
+          "readOnlyRootFilesystem": true,
+          "capabilities": {
+            "drop": [
+              "ALL"
+            ]
+          }
+        }
+      ]
+    },
+    "resources": {
+      "type": "object",
+      "default": {},
+      "title": "The resources Schema",
+      "required": [
+        "limits",
+        "requests"
+      ],
+      "properties": {
+        "limits": {
+          "type": "object",
+          "default": {},
+          "title": "The limits Schema",
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "type": "string",
+              "default": "",
+              "title": "The cpu Schema",
+              "examples": [
+                "100m"
+              ]
+            },
+            "memory": {
+              "type": "string",
+              "default": "",
+              "title": "The memory Schema",
+              "examples": [
+                "128Mi"
+              ]
+            }
+          },
+          "examples": [
+            {
+              "cpu": "100m",
+              "memory": "128Mi"
+            }
+          ]
+        },
+        "requests": {
+          "type": "object",
+          "default": {},
+          "title": "The requests Schema",
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "type": "string",
+              "default": "",
+              "title": "The cpu Schema",
+              "examples": [
+                "100m"
+              ]
+            },
+            "memory": {
+              "type": "string",
+              "default": "",
+              "title": "The memory Schema",
+              "examples": [
+                "128Mi"
+              ]
+            }
+          },
+          "examples": [
+            {
+              "cpu": "100m",
+              "memory": "128Mi"
+            }
+          ]
+        }
+      },
+      "examples": [
+        {
+          "limits": {
+            "cpu": "100m",
+            "memory": "128Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "128Mi"
+          }
+        }
+      ]
+    }
+  },
+  "examples": [
+    {
+      "database": {
+        "host": "",
+        "username": "",
+        "password": "",
+        "database": "",
+        "port": 5432
+      },
+      "certificate": {
+        "issuerName": "",
+        "issuerKind": "ClusterIssuer"
+      },
+      "service": {
+        "hostname": "",
+        "type": "LoadBalancer",
+        "port": 65432
+      },
+      "envoy": {
+        "port": 5432,
+        "timeout": "120s"
+      },
+      "pgbouncer": {
+        "image": {
+          "repository": "bitnami/pgbouncer",
+          "tag": "1.17.0-debian-11-r59"
+        }
+      },
+      "replicaCount": 1,
+      "image": {
+        "repository": "envoyproxy/envoy-contrib",
+        "pullPolicy": "IfNotPresent",
+        "tag": ""
+      },
+      "imagePullSecrets": [],
+      "nameOverride": "",
+      "fullnameOverride": "",
+      "serviceAccount": {
+        "create": true,
+        "annotations": {},
+        "name": ""
+      },
+      "podSecurityContext": {
+        "fsGroup": 1001
+      },
+      "securityContext": {
+        "runAsUser": 1001,
+        "runAsNonRoot": true,
+        "readOnlyRootFilesystem": true,
+        "capabilities": {
+          "drop": [
+            "ALL"
+          ]
+        }
+      },
+      "resources": {
+        "limits": {
+          "cpu": "100m",
+          "memory": "128Mi"
+        },
+        "requests": {
+          "cpu": "100m",
+          "memory": "128Mi"
+        }
+      }
+    }
+  ]
+}

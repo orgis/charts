@@ -8,16 +8,25 @@ data:
       id: proxy
       cluster: proxy
     admin:
-      access_log_path: /dev/null
       address:
         socket_address:
           address: 0.0.0.0
           port_value: 8000
+      access_log:
+      - name: envoy.access_loggers.stdout
+        typed_config:
+          "@type": type.googleapis.com/envoy.extensions.access_loggers.stream.v3.StdoutAccessLog
+          log_format:
+            json_format:
+              start_time: "%START_TIME%"
+              upstream_host: "%UPSTREAM_HOST%"
+              user_agent: "%REQ(USER-AGENT)%"
+
     # https://github.com/envoyproxy/envoy/issues/10942
     static_resources:
       clusters:
       - name: postgres_cluster
-        connect_timeout: 120s
+        connect_timeout: {{ .Values.database.timeout }}
         type: STRICT_DNS
         load_assignment:
           cluster_name: postgres_cluster
@@ -26,8 +35,8 @@ data:
             - endpoint:
                 address:
                   socket_address:
-                    address: {{ .Values.databaseEndpoint }}
-                    port_value: 5432
+                    address: 0.0.0.0
+                    port_value: 6432
 
       listeners:
       - name: listener
