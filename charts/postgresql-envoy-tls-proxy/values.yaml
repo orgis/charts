@@ -26,6 +26,7 @@ pgbouncer:
   image:
     repository: "bitnami/pgbouncer"
     tag: "1.17.0-debian-11-r59"
+  # extraEnv: {}
 
 replicaCount: 1
 
