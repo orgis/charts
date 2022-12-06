@@ -20,7 +20,7 @@ service:
 
 envoy:
   port: 5432
-  timeout: "120s"
+  timeout: "300s"
 
 pgbouncer:
   image:
